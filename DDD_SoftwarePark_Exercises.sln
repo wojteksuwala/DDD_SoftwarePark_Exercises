@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ex001_Transport_Tycoon", "Ex001_Transport_Tycoon\Ex001_Transport_Tycoon.csproj", "{F590A512-51C0-42CD-8BC2-856CEA776FF3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ex002_Transport_Tycoon", "Ex002_Transport_Tycoon\Ex002_Transport_Tycoon.csproj", "{64AA5BF5-4157-489D-8AB4-381D03AA5F4C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +14,9 @@ Global
 		{F590A512-51C0-42CD-8BC2-856CEA776FF3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F590A512-51C0-42CD-8BC2-856CEA776FF3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F590A512-51C0-42CD-8BC2-856CEA776FF3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{64AA5BF5-4157-489D-8AB4-381D03AA5F4C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{64AA5BF5-4157-489D-8AB4-381D03AA5F4C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{64AA5BF5-4157-489D-8AB4-381D03AA5F4C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{64AA5BF5-4157-489D-8AB4-381D03AA5F4C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
