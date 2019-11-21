@@ -11,7 +11,7 @@ namespace Ex002_Transport_Tycoon
         private int timeToDestination;
         public TransportType Type { get; }
         private readonly Place baseLocation;
-        private List<DomainEvent> events = new List<DomainEvent>();
+        private readonly List<DomainEvent> events = new List<DomainEvent>();
 
         public Transport(int transportId, Place baseLocation, Place currentLocation, TransportType type)
         {

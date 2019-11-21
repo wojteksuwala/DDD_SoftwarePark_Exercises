@@ -1,4 +1,3 @@
-using System.IO;
 using System.Linq;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
@@ -18,17 +17,17 @@ namespace Ex002_Transport_Tycoon
         public int TransportId { get; }
         public TransportType Kind { get; }
         public Place? Location { get; }
-        public Place Destinantion { get; }
+        public Place Destination { get; }
         public CargoInfo[] Cargo { get; }
 
-        public DomainEvent(EventType @event, int time, int transportId, TransportType kind, Place? location, Place destinantion, Cargo[] cargo)
+        public DomainEvent(EventType @event, int time, int transportId, TransportType kind, Place? location, Place destination, Cargo[] cargo)
         {
             Event = @event;
             Time = time;
             TransportId = transportId;
             Kind = kind;
             Location = location;
-            Destinantion = destinantion;
+            Destination = destination;
             Cargo = cargo
                 .Select(c =>new CargoInfo(c))
                 .ToArray();
@@ -52,8 +51,8 @@ namespace Ex002_Transport_Tycoon
     
     class TransportDeparts : DomainEvent
     {
-        public TransportDeparts(int time, int transportId, TransportType kind, Place location, Place destinantion, Cargo[] cargo) 
-            : base(EventType.Depart, time, transportId, kind, location, destinantion, cargo)
+        public TransportDeparts(int time, int transportId, TransportType kind, Place location, Place destination, Cargo[] cargo) 
+            : base(EventType.Depart, time, transportId, kind, location, destination, cargo)
         {
         }
         
