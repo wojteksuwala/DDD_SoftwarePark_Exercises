@@ -33,6 +33,8 @@ namespace Ex002_Transport_Tycoon
                     Console.WriteLine(@event.ToJson());
                 }
 
+                LogFile.Create(test, result.time, result.events);
+
                 Console.WriteLine("----------------------");
             }
         }
