@@ -2,26 +2,24 @@ using System.Collections.Generic;
 
 namespace Ex002_Transport_Tycoon
 {
-    //TODO: load up to capacity
-    //TODO: handle load time
     class Transport
     {
-        public int TransportId { get; }
-        public Place CurrentLocation { get; private set; }
-        private List<Cargo> cargo = new List<Cargo>();
+        private readonly int transportId;
+        private Place currentLocation;
+        private readonly List<Cargo> cargo = new List<Cargo>();
         
         private Place currentDestination;
         private int timeToDestination;
         private int eta;
         
-        private int loadTime;
+        private readonly int loadTime;
         private int etaLoad;
         private bool isLoading;
         private bool isUnloading;
-        
-        public TransportType Type { get; }
+
+        private readonly TransportType type;
         private readonly Place baseLocation;
-        public int Capacity { get; }
+        private readonly int capacity;
         private readonly List<DomainEvent> events = new List<DomainEvent>();
 
         public Transport(
@@ -33,43 +31,58 @@ namespace Ex002_Transport_Tycoon
             int loadTime
             )
         {
-            this.TransportId = transportId;
-            this.CurrentLocation = currentLocation;
-            this.Type = type;
+            this.transportId = transportId;
+            this.currentLocation = currentLocation;
+            this.type = type;
             this.baseLocation = baseLocation;
-            this.Capacity = capacity;
+            this.capacity = capacity;
             this.loadTime = loadTime;
             this.currentDestination = baseLocation;
         }
 
-        public void Move()
+        public IEnumerable<DomainEvent> Work(IDictionary<Place, Warehouse> map)
         {
-            if (currentDestination==CurrentLocation)
+            if ((IsEmpty() && CanLoadAt(map[currentLocation])) || isLoading)
+            {
+                Load(map[currentLocation]);
+            }
+            else if (IsLoaded() && ArrivedAtDestination())
+            {
+                var unloadedCargo = Unload();
+                map[currentLocation].AddCargo(unloadedCargo);
+            }
+                    
+            Move();
+            
+            return GetEvents();
+        }
+
+        private void Move()
+        {
+            if (currentDestination==currentLocation)
                 return;
             
             if (eta == timeToDestination)
             {
-                events.Add(new TransportDeparts(this, CurrentLocation, currentDestination, cargo.ToArray()));
+                events.Add(new TransportDeparts(SimulationTime.Now(), transportId, type, currentLocation, currentDestination, cargo.ToArray()));
             }
             
             eta--;
             
             if (eta == 0)
             {
-                CurrentLocation = currentDestination;
-                events.Add(new TransportArrives(this, CurrentLocation, cargo.ToArray()));
+                currentLocation = currentDestination;
+                events.Add(new TransportArrives(SimulationTime.Now(), transportId, type, currentLocation, cargo.ToArray()));
             }
         }
 
-        public bool IsEmpty() => cargo.Count==0;
-        
-        public bool IsLoading() => isLoading;
+        private bool IsEmpty() => cargo.Count==0;
 
-        public void Load(Warehouse warehouse)
+        private void Load(Warehouse warehouse)
         {
             if (!isLoading)
             {
-                var cargoToLoad = warehouse.GetCargoFor(this);
+                var cargoToLoad = warehouse.GetCargoFor(type,capacity);
                 isLoading = true;
                 etaLoad = loadTime;
                 cargo.AddRange(cargoToLoad);
@@ -78,7 +91,7 @@ namespace Ex002_Transport_Tycoon
 
             if (etaLoad == 0)
             {
-                var (destination, timeDistance) = cargo[0].GetDestinationFor(this.Type);
+                var (destination, timeDistance) = cargo[0].GetDestinationFor(type);
                 Start(destination, timeDistance);
                 isLoading = false;
             }
@@ -86,13 +99,13 @@ namespace Ex002_Transport_Tycoon
             etaLoad--;
         }
 
-        public bool CanLoadAt(Warehouse warehouse) => warehouse.HasCargoFor(Type);
+        private bool CanLoadAt(Warehouse warehouse) => warehouse.HasCargoFor(type);
 
-        public bool IsLoaded() => !IsEmpty();
+        private bool IsLoaded() => !IsEmpty();
 
-        public bool ArrivedAtDestination() => currentDestination == CurrentLocation;
+        private bool ArrivedAtDestination() => currentDestination == currentLocation;
 
-        public List<Cargo> Unload()
+        private IEnumerable<Cargo> Unload()
         {
             if (!isUnloading)
             {
@@ -115,11 +128,11 @@ namespace Ex002_Transport_Tycoon
 
             etaLoad--;
             
-            return new List<Cargo>{};
+            return new List<Cargo>();
         }
         
         
-        public IEnumerable<DomainEvent> GetEvents()
+        private IEnumerable<DomainEvent> GetEvents()
         {
             var eventsCopy = new List<DomainEvent>(events);
             events.Clear();
@@ -128,9 +141,9 @@ namespace Ex002_Transport_Tycoon
 
         private void GoToBase()
         {
-            if (CurrentLocation == baseLocation)
+            if (currentLocation == baseLocation)
                 return;
-            var wayHome = new RouteFinder().FindRoute(CurrentLocation, baseLocation, this.Type);
+            var wayHome = new RouteFinder().FindRoute(currentLocation, baseLocation, type);
             Start(baseLocation, wayHome.TotalTime);
         }
 

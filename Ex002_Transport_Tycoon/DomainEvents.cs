@@ -55,11 +55,6 @@ namespace Ex002_Transport_Tycoon
             : base(EventType.Depart, time, transportId, kind, location, destination, cargo)
         {
         }
-        
-        public TransportDeparts(Transport t, Place from, Place where, Cargo[] cargo) 
-            : this(SimulationTime.Now(), t.TransportId, t.Type, from,  where, cargo)
-        {
-        }
     }
 
     class TransportArrives : DomainEvent
@@ -67,12 +62,6 @@ namespace Ex002_Transport_Tycoon
         public TransportArrives(int time, int transportId, TransportType kind, Place destinantion, Cargo[] cargo) 
             : base(EventType.Arrive, time, transportId, kind, null, destinantion, cargo)
         {
-        }
-
-        public TransportArrives(Transport t, Place where, Cargo[] cargo) 
-            : this(SimulationTime.Now(), t.TransportId, t.Type, where, cargo)
-        {
-            
         }
     }
 

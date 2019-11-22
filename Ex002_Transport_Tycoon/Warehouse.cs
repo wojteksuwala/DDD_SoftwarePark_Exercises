@@ -19,11 +19,11 @@ namespace Ex002_Transport_Tycoon
             this.cargo.AddRange(initialCargo);
         }
         
-        public List<Cargo> GetCargoFor(Transport transport)
+        public List<Cargo> GetCargoFor(TransportType transportType, int capacity)
         {
             var cargoToRemove = cargo
-                .Where(c => !c.ArrivedAtDestination && c.CanBeTransportedBy(transport.Type))
-                .Take(transport.Capacity)
+                .Where(c => !c.ArrivedAtDestination && c.CanBeTransportedBy(transportType))
+                .Take(capacity)
                 .ToList();
             
             foreach (var c in cargoToRemove)

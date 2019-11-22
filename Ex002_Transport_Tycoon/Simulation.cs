@@ -33,19 +33,7 @@ namespace Ex002_Transport_Tycoon
             {
                 foreach (var t in transports)
                 {
-                    if ((t.IsEmpty() && t.CanLoadAt(map[t.CurrentLocation])) || t.IsLoading())
-                    {
-                        t.Load(map[t.CurrentLocation]);
-                    }
-                    else if (t.IsLoaded() && t.ArrivedAtDestination())
-                    {
-                        var cargo = t.Unload();
-                        map[t.CurrentLocation].AddCargo(cargo);
-                    }
-                    
-                    t.Move();
-
-                    events.AddRange(t.GetEvents());
+                    events.AddRange(t.Work(map));
                 }
                 
                 if (cargos.All(c => c.ArrivedAtDestination))
