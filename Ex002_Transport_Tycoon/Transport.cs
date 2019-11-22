@@ -144,11 +144,14 @@ namespace Ex002_Transport_Tycoon
 
         private void GoToBase()
         {
-            if (currentLocation == baseLocation)
+            if (AtBase)
                 return;
+            
             var wayHome = new RouteFinder().FindRoute(currentLocation, baseLocation, type);
             Start(baseLocation, wayHome.TotalTime);
         }
+
+        private bool AtBase => currentLocation == baseLocation;
 
         private void Start(Place to,int distance)
         {
