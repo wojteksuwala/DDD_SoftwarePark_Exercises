@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Ex002_Transport_Tycoon
 {
@@ -64,7 +65,7 @@ namespace Ex002_Transport_Tycoon
             
             if (eta == timeToDestination)
             {
-                events.Add(new TransportDeparts(SimulationTime.Now(), transportId, type, currentLocation, currentDestination, cargo.ToArray()));
+                events.Add(new TransportDeparted(SimulationTime.Now(), transportId, type, currentLocation, currentDestination, cargo.ToArray()));
             }
             
             eta--;
@@ -72,7 +73,7 @@ namespace Ex002_Transport_Tycoon
             if (eta == 0)
             {
                 currentLocation = currentDestination;
-                events.Add(new TransportArrives(SimulationTime.Now(), transportId, type, currentLocation, cargo.ToArray()));
+                events.Add(new TransportArrived(SimulationTime.Now(), transportId, type, currentLocation, cargo.ToArray()));
             }
         }
 
@@ -94,6 +95,7 @@ namespace Ex002_Transport_Tycoon
                 var (destination, timeDistance) = cargo[0].GetDestinationFor(type);
                 Start(destination, timeDistance);
                 isLoading = false;
+                events.Add(new CargoLoaded(SimulationTime.Now(), transportId, type, currentLocation, cargo.ToArray()));
             }
 
             etaLoad--;
@@ -105,7 +107,7 @@ namespace Ex002_Transport_Tycoon
 
         private bool ArrivedAtDestination() => currentDestination == currentLocation;
 
-        private IEnumerable<Cargo> Unload()
+        private IList<Cargo> Unload()
         {
             if (!isUnloading)
             {
@@ -123,6 +125,7 @@ namespace Ex002_Transport_Tycoon
                 cargo.Clear();
                 isUnloading = false;
                 GoToBase();
+                events.Add(new CargoUnloaded(SimulationTime.Now(), transportId, type, currentLocation, toUnload.ToArray()));
                 return toUnload;
             }
 

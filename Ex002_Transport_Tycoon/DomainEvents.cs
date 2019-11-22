@@ -8,7 +8,9 @@ namespace Ex002_Transport_Tycoon
     enum EventType
     {
         Depart,
-        Arrive
+        Arrive,
+        Load,
+        Unload
     }
     abstract class DomainEvent
     {
@@ -17,10 +19,10 @@ namespace Ex002_Transport_Tycoon
         public int TransportId { get; }
         public TransportType Kind { get; }
         public Place? Location { get; }
-        public Place Destination { get; }
+        public Place? Destination { get; }
         public CargoInfo[] Cargo { get; }
 
-        public DomainEvent(EventType @event, int time, int transportId, TransportType kind, Place? location, Place destination, Cargo[] cargo)
+        public DomainEvent(EventType @event, int time, int transportId, TransportType kind, Place? location, Place? destination, Cargo[] cargo)
         {
             Event = @event;
             Time = time;
@@ -49,18 +51,34 @@ namespace Ex002_Transport_Tycoon
         }
     }
     
-    class TransportDeparts : DomainEvent
+    class TransportDeparted : DomainEvent
     {
-        public TransportDeparts(int time, int transportId, TransportType kind, Place location, Place destination, Cargo[] cargo) 
+        public TransportDeparted(int time, int transportId, TransportType kind, Place location, Place destination, Cargo[] cargo) 
             : base(EventType.Depart, time, transportId, kind, location, destination, cargo)
         {
         }
     }
 
-    class TransportArrives : DomainEvent
+    class TransportArrived : DomainEvent
     {
-        public TransportArrives(int time, int transportId, TransportType kind, Place destinantion, Cargo[] cargo) 
-            : base(EventType.Arrive, time, transportId, kind, null, destinantion, cargo)
+        public TransportArrived(int time, int transportId, TransportType kind, Place destination, Cargo[] cargo) 
+            : base(EventType.Arrive, time, transportId, kind, null, destination, cargo)
+        {
+        }
+    }
+
+    class CargoLoaded : DomainEvent
+    {
+        public CargoLoaded(int time, int transportId, TransportType kind, Place location, Cargo[] cargo) 
+            : base(EventType.Load, time, transportId, kind, location, null, cargo)
+        {
+        }
+    }
+    
+    class CargoUnloaded : DomainEvent
+    {
+        public CargoUnloaded(int time, int transportId, TransportType kind, Place location, Cargo[] cargo) 
+            : base(EventType.Unload, time, transportId, kind, location, null, cargo)
         {
         }
     }
