@@ -21,10 +21,10 @@ namespace Ex002_Transport_Tycoon
         {
             var cargos = CargosFromCharArray(initialCargo.ToCharArray());
             var events = new List<DomainEvent>();
-            transports.Add(new Transport(0, Place.Factory, Place.Factory,TransportType.Vehicle));
-            transports.Add(new Transport(2,Place.Port, Place.Port,TransportType.Ship));
-            transports.Add(new Transport(1, Place.Factory, Place.Factory,TransportType.Vehicle));
-
+            transports.Add(new Transport(0, Place.Factory, Place.Factory,TransportType.Vehicle,1,0));
+            transports.Add(new Transport(1, Place.Factory, Place.Factory,TransportType.Vehicle,1,0));
+            transports.Add(new Transport(2,Place.Port, Place.Port,TransportType.Ship,4,1));
+            
             SimulationTime.Reset();
             
             map[Place.Factory].SetCargo(cargos);
@@ -33,9 +33,9 @@ namespace Ex002_Transport_Tycoon
             {
                 foreach (var t in transports)
                 {
-                    if (t.IsEmpty() && t.CanLoadAt(map[t.CurrentLocation]))
+                    if ((t.IsEmpty() && t.CanLoadAt(map[t.CurrentLocation])) || t.IsLoading())
                     {
-                        t.LoadFrom(map[t.CurrentLocation]);
+                        t.Load(map[t.CurrentLocation]);
                     }
                     else if (t.IsLoaded() && t.ArrivedAtDestination())
                     {
@@ -44,7 +44,7 @@ namespace Ex002_Transport_Tycoon
                     }
                     
                     t.Move();
-                    
+
                     events.AddRange(t.GetEvents());
                 }
                 

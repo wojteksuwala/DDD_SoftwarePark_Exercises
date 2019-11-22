@@ -19,10 +19,17 @@ namespace Ex002_Transport_Tycoon
             this.cargo.AddRange(initialCargo);
         }
         
-        public Cargo GetCargoFor(TransportType type)
+        public List<Cargo> GetCargoFor(Transport transport)
         {
-            var cargoToRemove = cargo.First(c => !c.ArrivedAtDestination && c.CanBeTransportedBy(type));
-            cargo.Remove(cargoToRemove);
+            var cargoToRemove = cargo
+                .Where(c => !c.ArrivedAtDestination && c.CanBeTransportedBy(transport.Type))
+                .Take(transport.Capacity)
+                .ToList();
+            
+            foreach (var c in cargoToRemove)
+            {
+                cargo.Remove(c);
+            }
             return cargoToRemove;
         }
 
@@ -31,6 +38,6 @@ namespace Ex002_Transport_Tycoon
             return cargo.Any(c => !c.ArrivedAtDestination && c.CanBeTransportedBy(type));
         }
 
-        public void AddCargo(Cargo newCargo) => cargo.Add(newCargo);
+        public void AddCargo(IEnumerable<Cargo> newCargo) => cargo.AddRange(newCargo);
     }
 }

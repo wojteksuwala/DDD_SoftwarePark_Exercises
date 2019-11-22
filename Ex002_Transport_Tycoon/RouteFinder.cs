@@ -19,7 +19,7 @@ namespace Ex002_Transport_Tycoon
             new RouteSpecification(new List<Leg>
             {
                 new Leg(Place.Factory, Place.Port, TransportType.Vehicle, 1),
-                new Leg(Place.Port, Place.A, TransportType.Ship, 4)
+                new Leg(Place.Port, Place.A, TransportType.Ship, 6)
             }),
             new RouteSpecification(new List<Leg>
             {
@@ -27,7 +27,7 @@ namespace Ex002_Transport_Tycoon
             }),
             new RouteSpecification(new List<Leg>
             {
-                new Leg(Place.A, Place.Port, TransportType.Ship, 4)
+                new Leg(Place.A, Place.Port, TransportType.Ship, 6)
             })
         };
 
