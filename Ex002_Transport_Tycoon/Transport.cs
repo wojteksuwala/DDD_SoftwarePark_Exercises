@@ -68,13 +68,13 @@ namespace Ex002_Transport_Tycoon
                 events.Add(new TransportDeparted(SimulationTime.Now(), transportId, type, currentLocation, currentDestination, cargo.ToArray()));
             }
             
-            eta--;
-            
             if (eta == 0)
             {
                 currentLocation = currentDestination;
                 events.Add(new TransportArrived(SimulationTime.Now(), transportId, type, currentLocation, cargo.ToArray()));
             }
+            
+            eta--;
         }
 
         private bool IsEmpty() => cargo.Count==0;

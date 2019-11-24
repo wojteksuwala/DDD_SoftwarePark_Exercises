@@ -1,83 +1,83 @@
 {
- "displayTimeUnit": "ms",
+ "displayTimeUnit": "ms", 
  "traceEvents": [
   {
-   "ts": 0,
-   "pid": "Vehicle:0",
-   "tid": "Vehicle:0",
-   "cat": "ddd",
+   "name": "Factory-B", 
+   "tid": "Vehicle:0", 
+   "ph": "B", 
    "args": {
     "cargo": [
      "CARGO:Factory_B_0"
-    ],
+    ], 
     "transport": "Vehicle:0"
-   },
-   "ph": "B",
-   "name": "Factory-B"
-  },
+   }, 
+   "pid": "Vehicle:0", 
+   "ts": 0, 
+   "cat": "ddd"
+  }, 
   {
-   "ts": 0,
-   "pid": "Vehicle:1",
-   "tid": "Vehicle:1",
-   "cat": "ddd",
+   "name": "Factory-B", 
+   "tid": "Vehicle:1", 
+   "ph": "B", 
    "args": {
     "cargo": [
      "CARGO:Factory_B_1"
-    ],
+    ], 
     "transport": "Vehicle:1"
-   },
-   "ph": "B",
-   "name": "Factory-B"
-  },
+   }, 
+   "pid": "Vehicle:1", 
+   "ts": 0, 
+   "cat": "ddd"
+  }, 
   {
-   "ts": 4,
-   "pid": "Vehicle:0",
-   "tid": "Vehicle:0",
-   "cat": "ddd",
+   "tid": "Vehicle:0", 
+   "ph": "E", 
    "args": {
     "cargo": [
      "CARGO:Factory_B_0"
-    ],
+    ], 
     "transport": "Vehicle:0"
-   },
-   "ph": "E"
-  },
+   }, 
+   "pid": "Vehicle:0", 
+   "ts": 5, 
+   "cat": "ddd"
+  }, 
   {
-   "ts": 4,
-   "pid": "Vehicle:1",
-   "tid": "Vehicle:1",
-   "cat": "ddd",
+   "tid": "Vehicle:1", 
+   "ph": "E", 
    "args": {
     "cargo": [
      "CARGO:Factory_B_1"
-    ],
+    ], 
     "transport": "Vehicle:1"
-   },
-   "ph": "E"
-  },
+   }, 
+   "pid": "Vehicle:1", 
+   "ts": 5, 
+   "cat": "ddd"
+  }, 
   {
-   "ts": 5,
-   "pid": "Vehicle:0",
-   "tid": "Vehicle:0",
-   "cat": "ddd",
+   "name": "B-Factory", 
+   "tid": "Vehicle:0", 
+   "ph": "B", 
    "args": {
-    "cargo": [],
+    "cargo": [], 
     "transport": "Vehicle:0"
-   },
-   "ph": "B",
-   "name": "B-Factory"
-  },
+   }, 
+   "pid": "Vehicle:0", 
+   "ts": 6, 
+   "cat": "ddd"
+  }, 
   {
-   "ts": 5,
-   "pid": "Vehicle:1",
-   "tid": "Vehicle:1",
-   "cat": "ddd",
+   "name": "B-Factory", 
+   "tid": "Vehicle:1", 
+   "ph": "B", 
    "args": {
-    "cargo": [],
+    "cargo": [], 
     "transport": "Vehicle:1"
-   },
-   "ph": "B",
-   "name": "B-Factory"
+   }, 
+   "pid": "Vehicle:1", 
+   "ts": 6, 
+   "cat": "ddd"
   }
  ]
 }

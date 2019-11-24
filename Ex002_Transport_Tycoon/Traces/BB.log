@@ -1,11 +1,11 @@
-# Deliver BB completed in: 5
+# Deliver BB completed in: 6
 {"event":"LOAD","time":0,"transport_id":0,"kind":"Vehicle","location":"Factory","cargo":[{"cargo_id":0,"destination":"B","origin":"Factory"}],"duration":0}
 {"event":"DEPART","time":0,"transport_id":0,"kind":"Vehicle","location":"Factory","destination":"B","cargo":[{"cargo_id":0,"destination":"B","origin":"Factory"}]}
 {"event":"LOAD","time":0,"transport_id":1,"kind":"Vehicle","location":"Factory","cargo":[{"cargo_id":1,"destination":"B","origin":"Factory"}],"duration":0}
 {"event":"DEPART","time":0,"transport_id":1,"kind":"Vehicle","location":"Factory","destination":"B","cargo":[{"cargo_id":1,"destination":"B","origin":"Factory"}]}
-{"event":"ARRIVE","time":4,"transport_id":0,"kind":"Vehicle","destination":"B","cargo":[{"cargo_id":0,"destination":"B","origin":"Factory"}]}
-{"event":"ARRIVE","time":4,"transport_id":1,"kind":"Vehicle","destination":"B","cargo":[{"cargo_id":1,"destination":"B","origin":"Factory"}]}
-{"event":"UNLOAD","time":5,"transport_id":0,"kind":"Vehicle","location":"B","cargo":[{"cargo_id":0,"destination":"B","origin":"Factory"}],"duration":0}
-{"event":"DEPART","time":5,"transport_id":0,"kind":"Vehicle","location":"B","destination":"Factory","cargo":[]}
-{"event":"UNLOAD","time":5,"transport_id":1,"kind":"Vehicle","location":"B","cargo":[{"cargo_id":1,"destination":"B","origin":"Factory"}],"duration":0}
-{"event":"DEPART","time":5,"transport_id":1,"kind":"Vehicle","location":"B","destination":"Factory","cargo":[]}
+{"event":"ARRIVE","time":5,"transport_id":0,"kind":"Vehicle","destination":"B","cargo":[{"cargo_id":0,"destination":"B","origin":"Factory"}]}
+{"event":"ARRIVE","time":5,"transport_id":1,"kind":"Vehicle","destination":"B","cargo":[{"cargo_id":1,"destination":"B","origin":"Factory"}]}
+{"event":"UNLOAD","time":6,"transport_id":0,"kind":"Vehicle","location":"B","cargo":[{"cargo_id":0,"destination":"B","origin":"Factory"}],"duration":0}
+{"event":"DEPART","time":6,"transport_id":0,"kind":"Vehicle","location":"B","destination":"Factory","cargo":[]}
+{"event":"UNLOAD","time":6,"transport_id":1,"kind":"Vehicle","location":"B","cargo":[{"cargo_id":1,"destination":"B","origin":"Factory"}],"duration":0}
+{"event":"DEPART","time":6,"transport_id":1,"kind":"Vehicle","location":"B","destination":"Factory","cargo":[]}
