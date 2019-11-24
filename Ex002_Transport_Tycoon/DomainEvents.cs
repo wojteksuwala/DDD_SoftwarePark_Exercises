@@ -5,24 +5,19 @@ using Newtonsoft.Json.Serialization;
 
 namespace Ex002_Transport_Tycoon
 {
-    enum EventType
-    {
-        Depart,
-        Arrive,
-        Load,
-        Unload
-    }
     abstract class DomainEvent
     {
-        public EventType Event {get;}
+        public string Event {get;}
         public int Time { get; }
         public int TransportId { get; }
         public TransportType Kind { get; }
         public Place? Location { get; }
         public Place? Destination { get; }
         public CargoInfo[] Cargo { get; }
+        
+        public int? Duration { get; }
 
-        public DomainEvent(EventType @event, int time, int transportId, TransportType kind, Place? location, Place? destination, Cargo[] cargo)
+        public DomainEvent(string @event, int time, int transportId, TransportType kind, Place? location, Place? destination, int? duration, Cargo[] cargo)
         {
             Event = @event;
             Time = time;
@@ -30,6 +25,7 @@ namespace Ex002_Transport_Tycoon
             Kind = kind;
             Location = location;
             Destination = destination;
+            Duration = duration;
             Cargo = cargo
                 .Select(c =>new CargoInfo(c))
                 .ToArray();
@@ -54,7 +50,7 @@ namespace Ex002_Transport_Tycoon
     class TransportDeparted : DomainEvent
     {
         public TransportDeparted(int time, int transportId, TransportType kind, Place location, Place destination, Cargo[] cargo) 
-            : base(EventType.Depart, time, transportId, kind, location, destination, cargo)
+            : base("DEPART", time, transportId, kind, location, destination, null, cargo)
         {
         }
     }
@@ -62,23 +58,23 @@ namespace Ex002_Transport_Tycoon
     class TransportArrived : DomainEvent
     {
         public TransportArrived(int time, int transportId, TransportType kind, Place destination, Cargo[] cargo) 
-            : base(EventType.Arrive, time, transportId, kind, null, destination, cargo)
+            : base("ARRIVE", time, transportId, kind, null, destination, null,cargo)
         {
         }
     }
 
     class CargoLoaded : DomainEvent
     {
-        public CargoLoaded(int time, int transportId, TransportType kind, Place location, Cargo[] cargo) 
-            : base(EventType.Load, time, transportId, kind, location, null, cargo)
+        public CargoLoaded(int time, int transportId, TransportType kind, Place location, int duration, Cargo[] cargo) 
+            : base("LOAD", time, transportId, kind, location, null, duration, cargo)
         {
         }
     }
     
     class CargoUnloaded : DomainEvent
     {
-        public CargoUnloaded(int time, int transportId, TransportType kind, Place location, Cargo[] cargo) 
-            : base(EventType.Unload, time, transportId, kind, location, null, cargo)
+        public CargoUnloaded(int time, int transportId, TransportType kind, Place location, int duration, Cargo[] cargo) 
+            : base("UNLOAD", time, transportId, kind, location, null, duration, cargo)
         {
         }
     }

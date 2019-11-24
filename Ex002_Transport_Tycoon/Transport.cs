@@ -95,7 +95,7 @@ namespace Ex002_Transport_Tycoon
                 var (destination, timeDistance) = cargo[0].GetDestinationFor(type);
                 Start(destination, timeDistance);
                 isLoading = false;
-                events.Add(new CargoLoaded(SimulationTime.Now(), transportId, type, currentLocation, cargo.ToArray()));
+                events.Add(new CargoLoaded(SimulationTime.Now(), transportId, type, currentLocation, loadTime, cargo.ToArray()));
             }
 
             etaLoad--;
@@ -125,7 +125,7 @@ namespace Ex002_Transport_Tycoon
                 cargo.Clear();
                 isUnloading = false;
                 GoToBase();
-                events.Add(new CargoUnloaded(SimulationTime.Now(), transportId, type, currentLocation, toUnload.ToArray()));
+                events.Add(new CargoUnloaded(SimulationTime.Now(), transportId, type, currentLocation, loadTime,toUnload.ToArray()));
                 return toUnload;
             }
 

@@ -14,9 +14,6 @@ namespace Ex002_Transport_Tycoon
                 "BB",
                 "ABB", 
                 "AA", 
-                "AB",
-                "BB",
-                "ABB",
                 "AABABBAB"
             };
 

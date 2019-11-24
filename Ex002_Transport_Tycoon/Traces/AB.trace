@@ -1,0 +1,174 @@
+{
+ "displayTimeUnit": "ms",
+ "traceEvents": [
+  {
+   "ts": 0,
+   "pid": "Vehicle:0",
+   "tid": "Vehicle:0",
+   "cat": "ddd",
+   "args": {
+    "cargo": [
+     "CARGO:Factory_A_0"
+    ],
+    "transport": "Vehicle:0"
+   },
+   "ph": "B",
+   "name": "Factory-Port"
+  },
+  {
+   "ts": 0,
+   "pid": "Vehicle:0",
+   "tid": "Vehicle:0",
+   "cat": "ddd",
+   "args": {
+    "cargo": [
+     "CARGO:Factory_A_0"
+    ],
+    "transport": "Vehicle:0"
+   },
+   "ph": "E"
+  },
+  {
+   "ts": 0,
+   "pid": "Vehicle:1",
+   "tid": "Vehicle:1",
+   "cat": "ddd",
+   "args": {
+    "cargo": [
+     "CARGO:Factory_B_1"
+    ],
+    "transport": "Vehicle:1"
+   },
+   "ph": "B",
+   "name": "Factory-B"
+  },
+  {
+   "ts": 1,
+   "pid": "Vehicle:0",
+   "tid": "Vehicle:0",
+   "cat": "ddd",
+   "args": {
+    "cargo": [],
+    "transport": "Vehicle:0"
+   },
+   "ph": "B",
+   "name": "Port-Factory"
+  },
+  {
+   "ts": 1,
+   "pid": "Vehicle:0",
+   "tid": "Vehicle:0",
+   "cat": "ddd",
+   "args": {
+    "cargo": [],
+    "transport": "Vehicle:0"
+   },
+   "ph": "E"
+  },
+  {
+   "ts": 2,
+   "pid": "Ship:2",
+   "tid": "Ship:2",
+   "cat": "ddd",
+   "args": {
+    "cargo": [
+     "CARGO:Factory_A_0"
+    ],
+    "transport": "Ship:2"
+   },
+   "ph": "X",
+   "dur": 1,
+   "name": "LOAD"
+  },
+  {
+   "ts": 2,
+   "pid": "Ship:2",
+   "tid": "Ship:2",
+   "cat": "ddd",
+   "args": {
+    "cargo": [
+     "CARGO:Factory_A_0"
+    ],
+    "transport": "Ship:2"
+   },
+   "ph": "B",
+   "name": "Port-A"
+  },
+  {
+   "ts": 4,
+   "pid": "Vehicle:1",
+   "tid": "Vehicle:1",
+   "cat": "ddd",
+   "args": {
+    "cargo": [
+     "CARGO:Factory_B_1"
+    ],
+    "transport": "Vehicle:1"
+   },
+   "ph": "E"
+  },
+  {
+   "ts": 5,
+   "pid": "Vehicle:1",
+   "tid": "Vehicle:1",
+   "cat": "ddd",
+   "args": {
+    "cargo": [],
+    "transport": "Vehicle:1"
+   },
+   "ph": "B",
+   "name": "B-Factory"
+  },
+  {
+   "ts": 7,
+   "pid": "Ship:2",
+   "tid": "Ship:2",
+   "cat": "ddd",
+   "args": {
+    "cargo": [
+     "CARGO:Factory_A_0"
+    ],
+    "transport": "Ship:2"
+   },
+   "ph": "E"
+  },
+  {
+   "ts": 9,
+   "pid": "Vehicle:1",
+   "tid": "Vehicle:1",
+   "cat": "ddd",
+   "args": {
+    "cargo": [],
+    "transport": "Vehicle:1"
+   },
+   "ph": "E"
+  },
+  {
+   "ts": 9,
+   "pid": "Ship:2",
+   "tid": "Ship:2",
+   "cat": "ddd",
+   "args": {
+    "cargo": [
+     "CARGO:Factory_A_0"
+    ],
+    "transport": "Ship:2"
+   },
+   "ph": "X",
+   "dur": 1,
+   "name": "UNLOAD"
+  },
+  {
+   "ts": 9,
+   "pid": "Ship:2",
+   "tid": "Ship:2",
+   "cat": "ddd",
+   "args": {
+    "cargo": [],
+    "transport": "Ship:2"
+   },
+   "ph": "B",
+   "name": "A-Port"
+  }
+ ]
+}

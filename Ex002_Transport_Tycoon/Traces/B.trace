@@ -1,0 +1,44 @@
+{
+ "displayTimeUnit": "ms",
+ "traceEvents": [
+  {
+   "ts": 0,
+   "pid": "Vehicle:0",
+   "tid": "Vehicle:0",
+   "cat": "ddd",
+   "args": {
+    "cargo": [
+     "CARGO:Factory_B_0"
+    ],
+    "transport": "Vehicle:0"
+   },
+   "ph": "B",
+   "name": "Factory-B"
+  },
+  {
+   "ts": 4,
+   "pid": "Vehicle:0",
+   "tid": "Vehicle:0",
+   "cat": "ddd",
+   "args": {
+    "cargo": [
+     "CARGO:Factory_B_0"
+    ],
+    "transport": "Vehicle:0"
+   },
+   "ph": "E"
+  },
+  {
+   "ts": 5,
+   "pid": "Vehicle:0",
+   "tid": "Vehicle:0",
+   "cat": "ddd",
+   "args": {
+    "cargo": [],
+    "transport": "Vehicle:0"
+   },
+   "ph": "B",
+   "name": "B-Factory"
+  }
+ ]
+}
